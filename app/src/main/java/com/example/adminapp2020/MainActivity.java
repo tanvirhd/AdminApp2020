@@ -11,13 +11,18 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.example.adminapp2020.authentication.LoginActivity;
 import com.example.adminapp2020.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -70,6 +75,27 @@ public class MainActivity extends AppCompatActivity implements AdapterRegBusList
             }
         });
 
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.logout:
+                Log.d(TAG, "onOptionsItemSelected: downloading...");
+                FirebaseAuth.getInstance().signOut();startActivity(new Intent(MainActivity.this, LoginActivity.class));finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     void getDataForRecyc(){
