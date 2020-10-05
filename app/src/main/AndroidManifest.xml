@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".authentication.LoginActivity"></activity>
+        <activity android:name=".authentication.LoginActivity"
+            android:windowSoftInputMode="adjustResize"></activity>
         <activity android:name=".RegisterBusActivity" />
         <activity android:name=".AssignDriverActivity" />
         <activity
